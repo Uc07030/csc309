@@ -1,28 +1,72 @@
 
+
 <?php
+
     $server = 'localhost'; // 127.0.0.1
+
     $username = 'root';
+
     $password = '';
 
+    $db = 'csc309';
+
+
+
     // Open a new connection
-    $con = new mysqli($server, $username, $password);
+
+    $con = new mysqli($server, $username, $password, $db);
+
+
 
     // Check connection
+
     if ($con->connect_error){
+
         die("Connection failed: " . $con->connect_error);
+
     }
 
-    // Create Database
-    $sql = 'CREATE DATABASE csc309';
 
+
+    // Create a Table
+
+    $sql = "CREATE TABLE users (
+
+        id INT AUTO_INCREMENT PRIMARY KEY,
+
+        firstname VARCHAR(30) NOT NULL,
+
+        lastname VARCHAR(30) NOT NULL,
+
+        email VARCHAR(50) NOT NULL UNIQUE,
+
+        gender CHAR(1) NOT NULL,
+
+        date_of_birth DATE NOT NULL
+
+    )";
+
+
+ // setting the already created table to result variable 
     $result = $con->query($sql);
 
-    if ($result === true) {
-        echo 'Database creation successful';
+
+
+    if ($result === true) {//checking to see if table is created successfully 
+
+        echo 'Table created successfully';
+
     } else {
-        echo 'Error creating database: ' . $con->error;
+
+        echo 'Error creating creating2: ' . $con->error;
+
     }
 
+
+
     // Close connection
+
     $con->close();
+
 ?>
+
