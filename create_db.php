@@ -8,13 +8,11 @@
 
     $password = '';
 
-    $db = 'csc309';
-
 
 
     // Open a new connection
 
-    $con = new mysqli($server, $username, $password, $db);
+    $con = new mysqli($server, $username, $password);
 
 
 
@@ -28,37 +26,23 @@
 
 
 
-    // Create a Table
+    // Create Database
 
-    $sql = "CREATE TABLE users (
-
-        id INT AUTO_INCREMENT PRIMARY KEY,
-
-        firstname VARCHAR(30) NOT NULL,
-
-        lastname VARCHAR(30) NOT NULL,
-
-        email VARCHAR(50) NOT NULL UNIQUE,
-
-        gender CHAR(1) NOT NULL,
-
-        date_of_birth DATE NOT NULL
-
-    )";
+    $sql = 'CREATE DATABASE csc309';
 
 
- // setting the already created table to result variable 
+
     $result = $con->query($sql);
 
 
 
-    if ($result === true) {//checking to see if table is created successfully 
+    if ($result === true) {//checking if database is created 
 
-        echo 'Table created successfully';
+        echo 'Database creation successful';
 
     } else {
 
-        echo 'Error creating creating2: ' . $con->error;
+        echo 'Error creating database: ' . $con->error;
 
     }
 
@@ -69,4 +53,3 @@
     $con->close();
 
 ?>
-
